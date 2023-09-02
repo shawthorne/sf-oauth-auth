@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 import requests
 
 load_dotenv()
@@ -11,11 +11,20 @@ client_secret = os.getenv('CLIENT_SECRET')
 redirect_uri = os.getenv('APP_URL') + ':' + os.getenv('APP_PORT') + '/callback'
 
 app = Flask(__name__)
+port_number = os.getenv('APP_PORT')
 
 @app.route('/')
 def index():
+    return render_template("index.html")
+
+@app.route('/login', methods=('GET', 'POST'))
+def login():
     # Redirect the user to the Salesforce authorization URL
-    url = os.getenv('BASE_SALESFORCE_PRODUCTION_URL') + os.getenv('AUTHORIZE_URL')
+    env = request.form['sf_env']
+    if env == 'sandbox':
+        url = os.getenv('BASE_SALESFORCE_SANDBOX_URL') + os.getenv('AUTHORIZE_URL')
+    else:
+        url = os.getenv('BASE_SALESFORCE_PRODUCTION_URL') + os.getenv('AUTHORIZE_URL')
     params = {
         'response_type': 'code',
         'client_id': client_id,
@@ -37,7 +46,8 @@ def callback():
     }
     response = requests.post(url, data=data)
     access_token = response.json()['access_token']
-    return 'Access token: ' + access_token
+    #return 'Access token: ' + access_token
+    return render_template("success.html")
 
 if __name__ == '__main__':
-    app.run(port = os.getenv('APP_PORT'))
+    app.run(port=port_number)
