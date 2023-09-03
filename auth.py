@@ -47,7 +47,7 @@ def callback():
     response = requests.post(url, data=data)
     access_token = response.json()['access_token']
     #return 'Access token: ' + access_token
-    return render_template("success.html")
+    return render_template("success.html", token=access_token)
 
 if __name__ == '__main__':
     app.run(port=port_number)
