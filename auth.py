@@ -38,7 +38,7 @@ def login():
             'client_id': client_id,
             'redirect_uri': redirect_uri
         }
-        #
+        # Redirect the user to the authorization URL
         return redirect(url + '?' + requests.compat.urlencode(params))
     except Exception as e:
         return jsonify({'error': str(e)}), 500
