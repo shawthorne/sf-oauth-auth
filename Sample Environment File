@@ -1,0 +1,12 @@
+# Review and Update the Values below
+# Rename this file to .env
+# Remove these comments
+
+CLIENT_ID = 
+CLIENT_SECRET = 
+APP_URL = http://localhost
+APP_PORT = 7777
+BASE_SALESFORCE_PRODUCTION_URL = https://login.salesforce.com
+BASE_SALESFORCE_SANDBOX_URL = https://test.salesforce.com
+AUTHORIZE_URL = /services/oauth2/authorize
+TOKEN_URL = /services/oauth2/token
