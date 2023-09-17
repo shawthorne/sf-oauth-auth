@@ -2,11 +2,11 @@
 
 ## Overview
 
-Many of my projects use one or more of the various Salesforce API’s. One common element is that all API calls to Salesforce start with Authentication.
+This tutorial provides step-by-step instructions to receive an Access Token from Salesforce using the [OAuth 2.0 Web Server Flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_web_server_flow.htm&type=5). This token can be used to call various Salesforce APIs.
 
-The result of this project is an Authentication Token, which can be used to call Salesforce API’s. You can find many tutorials using a username-password flow for authentication, but this is not safe, nor would you use this in any real project. In fact, Salesforce has started blocking this by default ([Block Authorization Flows to Improve Security](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_disable_username_password_flow.htm&type=5)).
+You can find many tutorials that use a username-password flow for authentication, but this is not safe, nor would you use this in any real project. In fact, Salesforce has started blocking this by default ([Block Authorization Flows to Improve Security](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_disable_username_password_flow.htm&type=5)).
 
-In this project, I implement the [OAuth 2.0 Web Server Flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_disable_username_password_flow.htm&type=5).
+This tutorial uses [Python3](https://www.python.org/) along with the [Flask](https://flask.palletsprojects.com/en/2.3.x/) framework and [Requests](https://requests.readthedocs.io/en/latest/) package.
 
 ## Prerequisites
 
@@ -18,13 +18,13 @@ In this project, I implement the [OAuth 2.0 Web Server Flow](https://help.salesf
 
 ### Create a Connected App in Salesforce
 
-1. SetupApp Manager
+1. Setup\\App Manager
 2. New Connected App
 3. Connected App Name = API Test
 4. API Name = API\_Test
 5. Contact Email = your email
 6. Enable OAuth Settings = checked
-7. Callback URL = http://localhost:7777/callback
+7. Callback URL = `http://localhost:7777/callback`
 8. Available OAuth Scopes - Select
 	1. Manage user data via APIs (api)
 	2. Perform requests at any time (refresh\_token, offline\_access)
@@ -43,12 +43,12 @@ In this project, I implement the [OAuth 2.0 Web Server Flow](https://help.salesf
 	4. Under Field Permissions, check Read Access for all fields
 	5. Save the changes
 3. Create a User
-	1. SetupUsers
+	1. Setup\\Users
 	2. New User
 	3. First Name = API
 	4. Last Name = User
 	5. Email = your email
-	6. Username = Something unique, like api.user@test.not
+	6. Username = Something unique, like `api.user@test.not`
 	7. User License = Salesforce Integration
 	8. Profile = Service API User
 	9. Active = checked
@@ -79,9 +79,11 @@ In this project, I implement the [OAuth 2.0 Web Server Flow](https://help.salesf
 
 1. In Visual Studio Code, open the Command Pallet (Command Shift P)
 2. Choose Python: Create Environment
-3. Choose Vent
+3. Choose Venv
 4. Choose the latest version of Python3 installed
 5. Open a new Terminal and verify you are in the virtual environment
+
+![Screenshot 1](/1/1.png)
 
 ### Create Files and Folders
 1. Create a new File - auth.py
@@ -207,7 +209,7 @@ if __name__ == '__main__':
 ```
 7. Open .env
 8. Paste in this text
-```
+```plain text
 CLIENT_ID = 
 CLIENT_SECRET = 
 APP_URL = http://localhost
@@ -221,17 +223,19 @@ TOKEN_URL = /services/oauth2/token
 10. View the Connected App
 11. Click Manage Consumer Details
 12. Copy Consumer Key
-13. Paste it after CLIENT_ID = _
+13. Paste it after CLIENT_ID =
 14. Copy Consumer Secret
-15. Paste it after CLIENT_SECRET = _
+15. Paste it after CLIENT_SECRET =
 16. Make sure you have Saved all the files above
 
 ### Import Python Packages
 1. Open a new Terminal in Visual Studio Code
-2. Type/Paste this text 
-	1. `Pip3 install flask, requests, python-dotenv`
-	2. Press Enter
-	3. Assuming there are no errors, you are ready to test
+2. Type/Paste this text
+```bash
+pip3 install flask, requests, python-dotenv
+```
+3. Press Enter
+4. Assuming there are no errors, you are ready to test
 ## Test
 1. Right-Click the auth.py file and click Run Python File in Terminal
 2. Open a new browser window and navigate to [http://127.0.0.1:7777](http://127.0.0.1:7777)
@@ -246,6 +250,6 @@ TOKEN_URL = /services/oauth2/token
 ## References
 1. [Flask Documentation](https://flask.palletsprojects.com/en/2.3.x/)
 2. [Requests Documentation](https://pypi.org/project/requests/)
-3. [OAuth 2.0 Web Server Flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_disable_username_password_flow.htm&type=5)
+3. [OAuth 2.0 Web Server Flow](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_web_server_flow.htm&type=5)
 4. [Connected Apps](https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm&type=5)
 5. [Github Repo with Complete Project](https://github.com/shawthorne/sf-oauth-auth)
