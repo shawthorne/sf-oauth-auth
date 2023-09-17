@@ -73,7 +73,7 @@ This tutorial uses [Python3](https://www.python.org/) along with the [Flask](htt
 1. Create a new Directory (wherever you choose) named sf-oauth-auth
 2. Change to the new directory
 3. Open Visual Studio Code
-4. Open the Folder sf-oauth-auth (FileOpen Folder)
+4. Open the Folder sf-oauth-auth (File\\Open Folder)
 
 ### Create a Virtual Environment
 
