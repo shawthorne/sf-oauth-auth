@@ -83,7 +83,7 @@ This tutorial uses [Python3](https://www.python.org/) along with the [Flask](htt
 4. Choose the latest version of Python3 installed
 5. Open a new Terminal and verify you are in the virtual environment
 
-![Screenshot 1](/1/1.png)
+<img width="724" alt="1" src="https://github.com/shawthorne/sf-oauth-auth/assets/2444943/d7cdf91a-d7b4-45ec-8ffa-d2f6b86fa723">
 
 ### Create Files and Folders
 1. Create a new File - auth.py
